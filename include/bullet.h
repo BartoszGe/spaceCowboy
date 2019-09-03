@@ -3,16 +3,23 @@
 
 #include <SFML/Graphics.hpp>
 
-#define ballRadius 10.0f
+#define bulletWidth 2.0f
+#define bulletHeight 10.0f
+#define bulletVelocity 3.0f
 
 class Bullet : public sf::Drawable
 {
     public:
-        Bullet(float x, float y);
+        Bullet(float width, float height);
         Bullet() = delete;
         ~Bullet() = default;
+        void update();
+        sf::Vector2f getPosition();
+
     private:
-    sf::CircleShape shape;
+        void draw(sf::RenderTarget &target, sf::RenderStates state) const override;
+        sf::RectangleShape shape;
+        sf::Vector2f velocity {0, -bulletVelocity};
 };
 
 #endif
