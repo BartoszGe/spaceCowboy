@@ -16,9 +16,9 @@ def configure(cfg):
 
 def build(bld):
     src = bld.path.ant_glob('src/*.cpp')
-    inc = ['include']
+
     bld.program(
         target = 'spaceCowboy',
         source = src,
-        include = inc,
+        includes = ['include'],
         use = 'SFML')
