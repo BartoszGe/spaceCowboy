@@ -5,12 +5,12 @@
 
 #define bulletWidth 2.0f
 #define bulletHeight 10.0f
-#define bulletVelocity 3.0f
+#define bulletVelocity 6.0f
 
 class Bullet : public sf::Drawable
 {
     public:
-        Bullet(float width, float height);
+        Bullet(float x, float y);
         Bullet() = delete;
         ~Bullet() = default;
         void update();

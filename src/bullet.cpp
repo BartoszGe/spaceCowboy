@@ -1,14 +1,15 @@
 #include "bullet.h"
 
-Bullet::Bullet(float width, float height)
+Bullet::Bullet(float x, float y)
 {
-    shape.setPosition(width, height);
+    shape.setPosition(x, y);
     shape.setFillColor(sf::Color::White);
     shape.setSize(sf::Vector2f(bulletWidth, bulletHeight));
 }
 
 void Bullet::update()
 {
+    // printf("bullets %d velocity.y %d\n", (int)getPosition().y, (int)this->velocity.y);
     shape.move(this->velocity);
 }
 
