@@ -24,14 +24,14 @@ class Ship : public sf::Drawable
         sf::Vector2f velocity {shipVelocity, 0.f};
         sf::RenderWindow window;
 
-        bool spacePressed;
+        bool spacePressed{false};
         void handleSpaceButton();
         std::vector<Bullet> bullets;
-        float getTopPosition();
-        float getMiddlePosition();
-        float getLeftPosition();
-        float getRightPosition();
 
+        float getTopBound();
+        float getMiddle();
+        float getLeftBound();
+        float getRightBound();
 };
 
 #endif

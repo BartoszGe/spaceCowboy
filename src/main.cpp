@@ -2,7 +2,6 @@
 #include "bullet.h"
 #include "ship.h"
 
-
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Space Cowboy");
@@ -20,9 +19,8 @@ int main()
         ship.update();
         window.draw(ship);
 
-        for(size_t idx = 0; idx < ship.getBullets().size(); idx++) {
-            window.draw(ship.getBullets().at(idx)); 
-            // printf("bullets idx: %d,  %d \n", (int)idx, (int)ship.getBullets().at(idx).getPosition().y);
+        for(Bullet bullet: ship.getBullets()) {
+            window.draw(bullet); 
         }
         
         window.display();

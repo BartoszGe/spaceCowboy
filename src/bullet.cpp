@@ -13,12 +13,17 @@ void Bullet::update()
     shape.move(this->velocity);
 }
 
+void Bullet::draw(sf::RenderTarget &target, sf::RenderStates state) const 
+{
+    target.draw(this->shape, state);
+}
+
 sf::Vector2f Bullet::getPosition()
 {
     return shape.getPosition();
 }
 
-void Bullet::draw(sf::RenderTarget &target, sf::RenderStates state) const 
+float Bullet::getTopBound()
 {
-    target.draw(this->shape, state);
+    return this->shape.getPosition().y - shape.getSize().y /2.f;
 }
