@@ -16,6 +16,8 @@ class Bullet : public sf::Drawable
         void update();
         sf::Vector2f getPosition();
         float getTopBound();
+        float getLeftBound();
+        float getRightBound();
 
     private:
         void draw(sf::RenderTarget &target, sf::RenderStates state) const override;

@@ -12,13 +12,15 @@ class Asteroid : public sf::Drawable
         void update();
         sf::Vector2f getPosition();
         float getBottomBound();
+        float getLeftBound();
+        float getRightBound();
 
         bool isDestroyed();
         void destroy();
         sf::Vector2f getSize();
 
     private:
-    // virtual void draw(sf::RenderTarget &target, sf::RenderStates state) const override;
+    virtual void draw(sf::RenderTarget &target, sf::RenderStates state) const override;
     sf::RectangleShape shape;
     bool destroyed{false};
 };

@@ -11,34 +11,32 @@ Ship::Ship(float x, float y)
 
 void Ship::handleSpaceButton()
 {
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
         if(!spacePressed) {
             bullets.push_back(Bullet(getMiddle(), getTopBound()));
             // printf("bullets %d \n", (int)bullets.size());
         }
         spacePressed = true;
-    } else if(sf::Event::KeyReleased) {
+    } else if (sf::Event::KeyReleased) {
         spacePressed = false;
     }
 }
 
 void Ship::update()
 {
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && getLeftBound() > 0) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && getLeftBound() > 0) {
         velocity.x = -shipVelocity;
         shape.move(this->velocity);
-    } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) && getRightBound() < 800) {
+    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) && getRightBound() < 800) {
         velocity.x = shipVelocity;
         shape.move(this->velocity);
     }
     
     handleSpaceButton();
-    for(size_t idx = 0; idx < bullets.size(); idx++) {
-        bullets.at(idx).update();
+
+    for (Bullet &bullet: bullets) {
+        bullet.update();
     }
-    // for(Bullet bullet: bullets) {
-    //     bullet.update();
-    // }
 
 }
 

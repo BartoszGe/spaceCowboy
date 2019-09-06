@@ -27,3 +27,13 @@ float Bullet::getTopBound()
 {
     return this->shape.getPosition().y - shape.getSize().y /2.f;
 }
+
+float Bullet::getLeftBound() 
+{
+    return this->shape.getPosition().x - shape.getSize().x /2.f;
+}
+
+float Bullet::getRightBound() 
+{
+    return this->shape.getPosition().x + shape.getSize().x /2.f;
+}
