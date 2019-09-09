@@ -13,7 +13,7 @@ void Ship::handleSpaceButton()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
         if(!spacePressed) {
-            bullets.push_back(Bullet(getMiddle(), getTopBound()));
+            bullets.push_back(Bullet(getMiddle(), getTopBound(), 2.f, 2.f));
             // printf("bullets %d \n", (int)bullets.size());
         }
         spacePressed = true;
