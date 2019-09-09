@@ -3,23 +3,7 @@
 #include "ship.h"
 #include "asteroid.h"
 #include <vector>
-
-bool isIntersecting(Bullet &bullet, Asteroid &asteroid)
-{
-    return 
-        bullet.getTopBound() <= asteroid.getBottomBound() &&
-        bullet.getRightBound() >= asteroid.getLeftBound() &&
-        bullet.getLeftBound() <= asteroid.getRightBound();
-}
-
-bool isCollision(Bullet &bullet, Asteroid &asteroid)
-{
-    if (isIntersecting(bullet, asteroid)) {
-        asteroid.destroy();
-        return true;
-    }
-    return false;
-}
+#include "physics.h"
 
 int main()
 {
@@ -49,7 +33,7 @@ int main()
         for (Bullet &bullet: ship.getBullets()) {
             window.draw(bullet); 
             for (Asteroid &asteroid: asteroids) {
-                if (isCollision(bullet, asteroid)) {
+                if (Physics::getInstance().isCollision(bullet, asteroid)) {
                     break;
                 }
             }
