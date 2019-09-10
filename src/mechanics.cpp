@@ -30,16 +30,8 @@ void Mechanics::update()
 {
     updateVector(asteroids);
     updateVector(*bullets);
-
-    for (Bullet &bullet: *bullets) {
-        for (Asteroid &asteroid: asteroids) {
-            if (Physics::getInstance().isCollision(bullet, asteroid)) {
-                bullet.destroy();
-                asteroid.destroy();
-                break;
-            }
-        }   
-    }
+    Physics::getInstance().checkCollision(asteroids, *bullets);
+    Physics::getInstance().checkCollision(asteroids, *ship);
 }
 
 std::vector<Asteroid> &Mechanics::getAsteroids()

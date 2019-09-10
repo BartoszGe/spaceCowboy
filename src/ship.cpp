@@ -26,14 +26,9 @@ void Ship::update()
     if(spaceButtonPressed()) {
         bullets.push_back(Bullet(getPosition().x, getTopBound(), 2.f, 2.f));
     }
-
-    for (Bullet &bullet: bullets) {
-        bullet.update();
-    }
 }
 
 std::vector<Bullet> &Ship::getBullets()
 {
     return this->bullets;
 }
-

@@ -30,10 +30,12 @@ int main()
         mechanics.update();
 
         for (Bullet &bullet: *bullets) {
+            bullet.update();
             window.draw(bullet);
         }
 
         for (Asteroid &asteroid: *asteroids) {
+            asteroid.update();
             window.draw(asteroid);
         }
         
