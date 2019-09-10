@@ -4,21 +4,19 @@
 #include "asteroid.h"
 #include <vector>
 #include "physics.h"
+#include "mechanics.h"
 
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Space Cowboy");
-    window.setFramerateLimit(20);
+    window.setFramerateLimit(60);
     Ship ship(400, 550);
-    unsigned blockX{2}, blockY{4}, blockWidth{60}, blockHeight{20};
-    std::vector<Asteroid> asteroids;
-    for (int i = 0; i < blockY; i++) {
-        for (int j = 0; j < blockX; j++) {
-            asteroids.emplace_back((j+1) * (blockWidth + 10), (i+2) * (blockHeight + 5), blockWidth, blockHeight);
-        }
-    }
+    Mechanics mechanics(ship);
+    std::vector<Asteroid> *asteroids = &mechanics.getAsteroids();
+    printf("vector main: %p\n", asteroids);
 
     while (window.isOpen()) {
+
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -31,18 +29,19 @@ int main()
         window.draw(ship);
 
         for (Bullet &bullet: ship.getBullets()) {
-            window.draw(bullet); 
-            for (Asteroid &asteroid: asteroids) {
+            window.draw(bullet);
+            for (Asteroid &asteroid: *asteroids) {
                 if (Physics::getInstance().isCollision(bullet, asteroid)) {
+                    bullet.destroy();
+                    asteroid.destroy();
                     break;
                 }
             }
         }
         
-        auto iterator = remove_if (begin(asteroids), end(asteroids), [](Asteroid &asteroid) {return asteroid.isDestroyed(); });
-        asteroids.erase(iterator, end(asteroids));
+        mechanics.update();
 
-        for (Asteroid &asteroid: asteroids) {
+        for (Asteroid &asteroid: *asteroids) {
             window.draw(asteroid);
         }
         window.display();

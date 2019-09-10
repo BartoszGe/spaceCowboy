@@ -37,7 +37,6 @@ void Ship::update()
     for (Bullet &bullet: bullets) {
         bullet.update();
     }
-
 }
 
 void Ship::draw(sf::RenderTarget &target, sf::RenderStates state) const 
@@ -45,7 +44,7 @@ void Ship::draw(sf::RenderTarget &target, sf::RenderStates state) const
     target.draw(this->shape, state);
 }
 
-std::vector<Bullet> Ship::getBullets()
+std::vector<Bullet> &Ship::getBullets()
 {
     return this->bullets;
 }

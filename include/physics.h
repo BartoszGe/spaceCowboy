@@ -30,8 +30,6 @@ class Physics
         bool isCollision(Model &model1, Model &model2)
         {
             if (isIntersecting(model1, model2)) {
-                model1.destroy();
-                model2.destroy();
                 return true;
             }
             return false;

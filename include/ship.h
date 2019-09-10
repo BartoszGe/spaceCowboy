@@ -13,10 +13,15 @@ class Ship : public sf::Drawable
 {
     public:
         Ship(float x, float y);
-        Ship() = delete;
+        Ship() {}
         ~Ship() = default;
         void update();
-        std::vector<Bullet> getBullets();
+        std::vector<Bullet> &getBullets();
+        Ship& operator=(const Ship& ship) { return *this; }
+        float getTopBound();
+        float getMiddle();
+        float getLeftBound();
+        float getRightBound();
     
     private:
         void draw(sf::RenderTarget &target, sf::RenderStates state) const override;
@@ -27,11 +32,6 @@ class Ship : public sf::Drawable
         bool spacePressed{false};
         void handleSpaceButton();
         std::vector<Bullet> bullets;
-
-        float getTopBound();
-        float getMiddle();
-        float getLeftBound();
-        float getRightBound();
 };
 
 #endif
