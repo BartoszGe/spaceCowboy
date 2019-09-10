@@ -6,6 +6,7 @@
 #include "model.h"
 #include "asteroid.h"
 #include "bullet.h"
+#include "physics.h"
 
 class Mechanics
 {
@@ -16,6 +17,7 @@ class Mechanics
         void update();
 
         std::vector<Asteroid> &getAsteroids();
+        std::vector<Bullet> &getBullets();
 
     private:
         Ship *ship;

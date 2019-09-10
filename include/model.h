@@ -7,7 +7,7 @@ class Model : public sf::Drawable
 {
     public:
         Model(float x, float y, float width, float height);
-        Model() = delete;
+        Model() = default;
         ~Model() = default;
         void update();
         sf::Vector2f getPosition();
