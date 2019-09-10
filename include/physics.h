@@ -48,7 +48,7 @@ class Physics
                 if (Physics::getInstance().isCollision(asteroid, ship)) {
                     asteroid.destroy();
                     ship.destroy();
-                    break;
+                    exit (0);
                 }
             }
         }

@@ -1,13 +1,23 @@
 #include "mechanics.h"
+#include <random>
 
-std::vector<Asteroid> createAsteroids()
+int createRandom()
 {
-    unsigned blockX{2}, blockY{4}, blockWidth{60}, blockHeight{20};
-    std::vector<Asteroid> asteroids;
-    for (int i = 0; i < blockY; i++) {
-        for (int j = 0; j < blockX; j++) {
-            asteroids.emplace_back((j+1) * (blockWidth + 10), (i+2) * (blockHeight + 5), blockWidth, blockHeight);
-        }
+    std::random_device random_device;
+    std::mt19937 random_engine(random_device());
+    std::uniform_int_distribution<int> distribution_1_100(50, 750);
+    return distribution_1_100(random_engine);
+}
+
+std::vector<Asteroid> Mechanics::createAsteroids()
+{
+    int blockWidth{30}, blockHeight{10};
+    float velocity{1.f};
+    if(this->time <= this->clock.getElapsedTime()) {
+        Asteroid asteroid(createRandom(), -blockWidth, blockWidth, blockHeight);
+        asteroid.setVelocity(velocity);
+        this->asteroids.push_back(asteroid);
+        this->clock.restart();
     }
     return asteroids;
 }
@@ -17,6 +27,9 @@ Mechanics::Mechanics(Ship &ship)
     this->ship = &ship;
     this->asteroids = createAsteroids();
     this->bullets = &ship.getBullets();
+    this->clock = sf::Clock();
+    clock.restart();
+    this->time = sf::milliseconds(300);
 }
 
 template <class T>
@@ -28,6 +41,7 @@ void updateVector(std::vector<T> &models)
 
 void Mechanics::update()
 {
+    createAsteroids();
     updateVector(asteroids);
     updateVector(*bullets);
     Physics::getInstance().checkCollision(asteroids, *bullets);

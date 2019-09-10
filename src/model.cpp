@@ -13,6 +13,11 @@ void Model::update()
     shape.move(this->velocity);
 }
 
+void Model::setVelocity(float velocity)
+{
+    this->velocity = {0, velocity};
+}
+
 sf::Vector2f Model::getPosition()
 {
     return shape.getPosition();

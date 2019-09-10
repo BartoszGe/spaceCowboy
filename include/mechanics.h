@@ -20,9 +20,12 @@ class Mechanics
         std::vector<Bullet> &getBullets();
 
     private:
+        std::vector<Asteroid> createAsteroids();
         Ship *ship;
         std::vector<Asteroid> asteroids;
         std::vector<Bullet> *bullets;
+        sf::Time time;
+        sf::Clock clock;
 };
 
 #endif

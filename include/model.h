@@ -10,6 +10,9 @@ class Model : public sf::Drawable
         Model() = default;
         ~Model() = default;
         void update();
+
+        void setVelocity(float velocity);
+
         sf::Vector2f getPosition();
         float getTopBound();
         float getLeftBound();
@@ -23,7 +26,7 @@ class Model : public sf::Drawable
     protected:
         void draw(sf::RenderTarget &target, sf::RenderStates state) const override;
         sf::RectangleShape shape;
-        sf::Vector2f velocity {0, -6.0f};
+        sf::Vector2f velocity;
         bool destroyed{false};
 };
 
