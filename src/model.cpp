@@ -1,11 +1,12 @@
 #include "model.h"
 
-Model::Model(float x, float y, float width, float height)
+Model::Model(float x, float y, float width, float height, float velocity)
 {
     shape.setPosition(x, y);
     shape.setSize({width, height});
     shape.setFillColor(sf::Color::White);
     shape.setOrigin(width / 2.f, height / 2.f);
+    setVelocity(velocity);
 }
 
 void Model::update()

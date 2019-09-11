@@ -3,13 +3,13 @@
 
 #include <SFML/Graphics.hpp>
 #include "model.h"
+#include "physics.h"
 
 class Asteroid : public Model
 {
     public:
-        Asteroid(float x, float y, float width, float height) : Model(x, y, width, height) {};
-        Asteroid() = delete;
-        ~Asteroid() = default;
+        Asteroid() : Model(Physics::createRandom(), -30, 30, 10, 1.f) {};
+
 };
 
 #endif

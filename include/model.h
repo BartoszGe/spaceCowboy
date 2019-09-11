@@ -6,7 +6,7 @@
 class Model : public sf::Drawable
 {
     public:
-        Model(float x, float y, float width, float height);
+        Model(float x, float y, float width, float height, float velocity);
         Model() = default;
         ~Model() = default;
         void update();

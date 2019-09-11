@@ -24,8 +24,7 @@ void Ship::update()
     }
     
     if(spaceButtonPressed()) {
-        bullets.push_back(Bullet(getPosition().x, getTopBound(), 2.f, 2.f));
-        bullets.back().setVelocity(-6.f);
+        bullets.push_back(Bullet(getPosition().x, getTopBound(), 2.f, 2.f, -6.f));
     }
 }
 

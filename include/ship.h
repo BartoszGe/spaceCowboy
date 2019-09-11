@@ -5,14 +5,12 @@
 #include <vector>
 #include "bullet.h"
 
-#define shipWidth 80.0f
-#define shipHeight 20.0f
-#define shipVelocity 6.0f
 
+#define shipVelocity 6.0f
 class Ship : public Model
 {
     public:
-        Ship(float x, float y, float width, float height) : Model(x, y, width, height) {};
+        Ship(float x, float y, float width, float height, float velocity) : Model(x, y, width, height, velocity) {};
         Ship() = default;
         ~Ship() = default;
         void update();
