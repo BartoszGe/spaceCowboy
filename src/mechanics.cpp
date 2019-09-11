@@ -28,15 +28,14 @@ void Mechanics::update()
     // printf("asteroids: %p asteroids :%d, asteroidTime %d\n", &stars, (int)stars.size(), (int)starTime.asMilliseconds());
     createSpaceObjects(asteroids, asteroidTime, asteroidClock);
     createSpaceObjects(stars, starTime, starClock);
-    updateVector(asteroids);
-    updateVector(stars);
-    updateVector(*bullets);
     Physics::checkCollision(asteroids, *bullets);
     Physics::checkCollision(asteroids, *ship);
     Physics::checkOutOfBounds(asteroids);
     Physics::checkOutOfBounds(stars);
     Physics::checkOutOfBounds(*bullets);
-
+    updateVector(asteroids);
+    updateVector(stars);
+    updateVector(*bullets);
 }
 
 std::vector<Asteroid> &Mechanics::getAsteroids()
