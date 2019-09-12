@@ -10,7 +10,18 @@
 class Ship : public Model
 {
     public:
-        Ship(float x, float y, float width, float height, float velocity) : Model(x, y, width, height, velocity) {};
+        Ship(sf::Texture &texture) : Model
+        (
+            ModelSettings
+            {
+                400,
+                500,
+                1,
+                1,
+                6.f
+            },
+            texture
+        ) {};
         Ship() = default;
         ~Ship() = default;
         void update();

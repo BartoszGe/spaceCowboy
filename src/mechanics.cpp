@@ -1,10 +1,11 @@
 #include "mechanics.h"
 
-Mechanics::Mechanics(Ship &ship)
+Mechanics::Mechanics()
 {   
-    this->ship = &ship;
-    this->bullets = &ship.getBullets();
+    this->shipTexture.loadFromFile("images/rocket_ship128px.png");
     this->asteroidTexture.loadFromFile("images/asteroid64px.png");
+    this->ship = Ship(shipTexture);
+    this->bullets = &ship.getBullets();
 }
 
 template <class T>
@@ -39,13 +40,18 @@ void Mechanics::update()
     createSpaceObjects(asteroids, asteroidTexture, asteroidTime, asteroidClock);
     createSpaceObjects(stars, starTime, starClock);
     Physics::checkCollision(asteroids, *bullets);
-    Physics::checkCollision(asteroids, *ship);
+    Physics::checkCollision(asteroids, ship);
     Physics::checkOutOfBounds(asteroids);
     Physics::checkOutOfBounds(stars);
     Physics::checkOutOfBounds(*bullets);
     updateVector(asteroids);
     updateVector(stars);
     updateVector(*bullets);
+}
+
+Ship &Mechanics::getShip()
+{
+    return ship;
 }
 
 std::vector<Asteroid> &Mechanics::getAsteroids()

@@ -11,18 +11,19 @@
 class Mechanics
 {
     public:
+        Mechanics();
         Mechanics(Ship &ship);
-        Mechanics() = delete;
         ~Mechanics() = default;
         void update();
 
+        Ship &getShip();
         std::vector<Asteroid> &getAsteroids();
         std::vector<Star> &getStars();
         std::vector<Bullet> &getBullets();
 
     private:
-        Ship *ship;
-
+        sf::Texture shipTexture;
+        Ship ship;
         sf::Texture asteroidTexture;
         std::vector<Asteroid> asteroids;
         std::vector<Star> stars;

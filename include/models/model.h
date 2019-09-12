@@ -13,6 +13,8 @@ class Model : public sf::Drawable
         Model(ModelSettings model, sf::Texture &texture);
         Model() = default;
         ~Model() = default;
+
+        
         void update();
 
         void setVelocity(float velocity);
@@ -28,6 +30,7 @@ class Model : public sf::Drawable
         sf::Vector2f getSize();
 
     protected:
+        void move(sf::Vector2f &velocity);
         void draw(sf::RenderTarget &target, sf::RenderStates state) const override;
         sf::RectangleShape shape;
         std::optional<sf::Sprite> sprite;

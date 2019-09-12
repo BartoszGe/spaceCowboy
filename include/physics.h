@@ -70,7 +70,7 @@ class Physics
         }
 
         template <class T, class K>
-        static void checkCollision(std::vector<T> &models, K model2)
+        static void checkCollision(std::vector<T> &models, K &model2)
         {
             for (T &model1: models) {
                 if (isCollision(model1, model2)) {

@@ -17,14 +17,15 @@ void Ship::update()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && getLeftBound() > 0) {
         velocity = {-shipVelocity, 0};
-        shape.move(this->velocity);
+        move(velocity);
     } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) && getRightBound() < 800) {
         velocity = {shipVelocity, 0};
-        shape.move(this->velocity);
+        move(velocity);
     }
     
     if(spaceButtonPressed()) {
-        bullets.push_back(Bullet(getPosition().x, getTopBound(), 2.f, 2.f, -6.f));
+            bullets.push_back(Bullet(getPosition().x, getTopBound(), 2.f, 2.f, -6.f));
+            printf("bullet : %d\n", (int)getPosition().x);
     }
 }
 

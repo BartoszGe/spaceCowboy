@@ -29,11 +29,7 @@ Model::Model(ModelSettings model, sf::Texture &texture)
 
 void Model::update()
 {
-    if(sprite.has_value()) {
-        sprite.value().move(this->velocity);
-    } else {
-        shape.move(this->velocity);
-    }
+    move(this->velocity);
 }
 
 void Model::setVelocity(float velocity)
@@ -43,27 +39,26 @@ void Model::setVelocity(float velocity)
 
 sf::Vector2f Model::getPosition()
 {
-    if(sprite.has_value()) {
-        sprite.value().getPosition();
+    if (sprite.has_value()) {
+        return this->sprite.value().getPosition();
     } else {
-        return shape.getPosition();
+        return this->shape.getPosition();
     }
 }
 
 float Model::getTopBound()
 {
-    if(sprite.has_value()) {
+    if (sprite.has_value()) {
         return this->sprite.value().getGlobalBounds().top;
     } else {
-       return this->shape.getPosition().y - shape.getSize().y /2.f;
+        return this->shape.getPosition().y - shape.getSize().y /2.f;
     }
 }
 
 float Model::getLeftBound() 
 {
-    if(sprite.has_value()) {
+    if (sprite.has_value()) {
         return this->sprite.value().getGlobalBounds().left;
-        
     } else {
         return this->shape.getPosition().x - shape.getSize().x /2.f;
     }
@@ -71,24 +66,20 @@ float Model::getLeftBound()
 
 float Model::getRightBound() 
 {
-    if(sprite.has_value()) {
+    if (sprite.has_value()) {
         return this->sprite.value().getGlobalBounds().left + this->sprite.value().getGlobalBounds().height;
-        
     } else {
         return this->shape.getPosition().x + shape.getSize().x /2.f;
     }
-    
 }
 
 float Model::getBottomBound()
 {
-    if(sprite.has_value()) {
+    if (sprite.has_value()) {
         return this->sprite.value().getGlobalBounds().top + this->sprite.value().getGlobalBounds().height;
-        
     } else {
         return this->shape.getPosition().y + shape.getSize().y /2.f;
     }
-    
 }
 
 bool Model::isDestroyed()
@@ -101,9 +92,18 @@ void Model::destroy()
     this->destroyed = true;
 }
 
+void Model::move(sf::Vector2f &velocity)
+{
+    if (sprite.has_value()) {
+        this->sprite.value().move(velocity);
+    } else {
+        this->shape.move(velocity);
+    }
+}
+
 void Model::draw(sf::RenderTarget &target, sf::RenderStates state) const 
 {   
-    if(sprite.has_value()) {
+    if (sprite.has_value()) {
         target.draw(sprite.value(), state);
     } else {
         target.draw(this->shape, state);
