@@ -42,7 +42,7 @@ class Physics
         static bool isOutOfBounds(Model &model)
         {
             return 
-            model.getTopBound() <= -50 ||
+            model.getTopBound() <= -150 ||
             model.getBottomBound() >= 850;
         }
 

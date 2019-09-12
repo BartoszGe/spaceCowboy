@@ -4,7 +4,7 @@ Mechanics::Mechanics(Ship &ship)
 {   
     this->ship = &ship;
     this->bullets = &ship.getBullets();
-    this->asteroidTexture.loadFromFile("images/asteroid.png");
+    this->asteroidTexture.loadFromFile("images/asteroid64px.png");
 }
 
 template <class T>

@@ -14,12 +14,22 @@ class Asteroid : public Model
             ModelSettings
             {
                 Physics::createRandom(),
-                -30.f,
-                0.1f,
-                0.1f,
+                -100.f,
+                1,
+                1,
                 1.f
             },
             texture
         ) {};
+
+        void update()
+        {
+            if(sprite.has_value()) {
+                sprite.value().move(this->velocity);
+                sprite.value().rotate(1.f);
+            } else {
+                shape.move(this->velocity);
+            }
+        }
 };  
 #endif

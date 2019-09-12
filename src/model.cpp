@@ -23,7 +23,7 @@ Model::Model(ModelSettings model, sf::Texture &texture)
     sprite = sf::Sprite(texture);
     sprite.value().setPosition(model.x, model.y);
     sprite.value().setScale({model.width, model.height});
-    sprite.value().setOrigin(model.width / 2.f, model.height / 2.f);
+    sprite.value().setOrigin(sprite.value().getGlobalBounds().width / 2.f, sprite.value().getGlobalBounds().height / 2.f);
     setVelocity(model.velocity);
 }
 
