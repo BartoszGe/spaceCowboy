@@ -4,7 +4,6 @@
 #include "asteroid.h"
 #include <vector>
 #include "mechanics.h"
-#include "image.h"
 
 int main()
 {
@@ -12,7 +11,6 @@ int main()
     window.setFramerateLimit(60);
     Ship ship(400, 550, 70, 20, 6.0f);
     Mechanics mechanics(ship);
-    Image image(1.f, 1.f, 1.f, 1.f);
     std::vector<Asteroid> *asteroids = &mechanics.getAsteroids();
     std::vector<Star> *stars = &mechanics.getStars();
     std::vector<Bullet> *bullets = &mechanics.getBullets();
@@ -45,7 +43,6 @@ int main()
             window.draw(bullet);
         }
         
-        // window.draw(image.getSprite());
         window.display();
     }
     return 0;

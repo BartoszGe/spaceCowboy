@@ -4,6 +4,7 @@ Mechanics::Mechanics(Ship &ship)
 {   
     this->ship = &ship;
     this->bullets = &ship.getBullets();
+    this->asteroidTexture.loadFromFile("images/asteroid.png");
 }
 
 template <class T>
@@ -11,6 +12,16 @@ void createSpaceObjects(std::vector<T> &models, sf::Time delay, sf::Clock &clock
 {
     if(delay <= clock.getElapsedTime()) {
         T model;
+        models.push_back(model);
+        clock.restart();
+    }
+}
+
+template <class T>
+void createSpaceObjects(std::vector<T> &models, sf::Texture &texture, sf::Time delay, sf::Clock &clock)
+{
+    if(delay <= clock.getElapsedTime()) {
+        T model(texture);
         models.push_back(model);
         clock.restart();
     }
@@ -25,8 +36,7 @@ void updateVector(std::vector<T> &models)
 
 void Mechanics::update()
 {
-    // printf("asteroids: %p asteroids :%d, asteroidTime %d\n", &stars, (int)stars.size(), (int)starTime.asMilliseconds());
-    createSpaceObjects(asteroids, asteroidTime, asteroidClock);
+    createSpaceObjects(asteroids, asteroidTexture, asteroidTime, asteroidClock);
     createSpaceObjects(stars, starTime, starClock);
     Physics::checkCollision(asteroids, *bullets);
     Physics::checkCollision(asteroids, *ship);

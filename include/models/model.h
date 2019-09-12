@@ -2,11 +2,15 @@
 #define MODEL_H
 
 #include <SFML/Graphics.hpp>
+#include "modelSettings.h"
+#include <optional>
 
 class Model : public sf::Drawable
 {
     public:
         Model(float x, float y, float width, float height, float velocity);
+        Model(ModelSettings model);
+        Model(ModelSettings model, sf::Texture &texture);
         Model() = default;
         ~Model() = default;
         void update();
@@ -26,6 +30,7 @@ class Model : public sf::Drawable
     protected:
         void draw(sf::RenderTarget &target, sf::RenderStates state) const override;
         sf::RectangleShape shape;
+        std::optional<sf::Sprite> sprite;
         sf::Vector2f velocity;
         bool destroyed{false};
 };

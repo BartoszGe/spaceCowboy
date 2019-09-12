@@ -3,13 +3,23 @@
 
 #include <SFML/Graphics.hpp>
 #include "model.h"
+#include "modelSettings.h"
 #include "physics.h"
 
 class Asteroid : public Model
 {
     public:
-        Asteroid() : Model(Physics::createRandom(), -30, 30, 10, 1.f) {};
-
-};
-
+        Asteroid(sf::Texture &texture) : Model
+        (
+            ModelSettings
+            {
+                Physics::createRandom(),
+                -30.f,
+                0.1f,
+                0.1f,
+                1.f
+            },
+            texture
+        ) {};
+};  
 #endif

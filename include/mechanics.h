@@ -23,6 +23,7 @@ class Mechanics
     private:
         Ship *ship;
 
+        sf::Texture asteroidTexture;
         std::vector<Asteroid> asteroids;
         std::vector<Star> stars;
         std::vector<Bullet> *bullets;

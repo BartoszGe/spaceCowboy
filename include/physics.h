@@ -14,7 +14,7 @@ class Physics
         
     public:
 
-        static int createRandom()
+        static float createRandom()
         {
             std::random_device random_device;
             std::mt19937 random_engine(random_device());

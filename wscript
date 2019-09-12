@@ -20,4 +20,5 @@ def build(bld):
         target = 'spaceCowboy',
         source = src,
         includes = ['include', 'include/models'],
-        use = ['SFML'])
+        use = ['SFML'],
+        cxxflags = ['-std=c++17'])
