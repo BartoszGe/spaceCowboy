@@ -2,26 +2,27 @@
 #define PHYSICS_H
 
 #include <SFML/Graphics.hpp>
+#include <random>
 #include "model.h"
-#include "asteroid.h"
-#include "bullet.h"
 #include "ship.h"
+
 
 class Physics
 {
     private:
         Physics() {}
-        Physics(const Physics&);
-        void operator=(Physics const&);
         
     public:
-        static Physics &getInstance()
+
+        static float createRandom()
         {
-            static Physics Physics;
-            return Physics;
+            std::random_device random_device;
+            std::mt19937 random_engine(random_device());
+            std::uniform_int_distribution<int> distribution_1_100(50, 750);
+            return distribution_1_100(random_engine);
         }
 
-        bool isIntersecting(Model &model1, Model &model2)
+        static bool isIntersecting(Model &model1, Model &model2)
         {
             return 
             model1.getTopBound() <= model2.getBottomBound() &&
@@ -30,30 +31,7 @@ class Physics
             model1.getLeftBound() <= model2.getRightBound();
         }
 
-        void checkCollision(std::vector<Asteroid> &asteroids, std::vector<Bullet> &bullets)
-        {
-            for (Asteroid &asteroid: asteroids) {
-                for (Bullet &bullet: bullets) {
-                    if (isCollision(asteroid, bullet)) {
-                        asteroid.destroy();
-                        bullet.destroy();
-                    }
-                }   
-            }
-        }
-
-        void checkCollision(std::vector<Asteroid> &asteroids, Ship &ship)
-        {
-            for (Asteroid &asteroid: asteroids) {
-                if (Physics::getInstance().isCollision(asteroid, ship)) {
-                    asteroid.destroy();
-                    ship.destroy();
-                    exit (0);
-                }
-            }
-        }
-
-        bool isCollision(Model &model1, Model &model2)
+        static bool isCollision(Model &model1, Model &model2)
         {
             if (isIntersecting(model1, model2)) {
                 return true;
@@ -61,6 +39,47 @@ class Physics
             return false;
         }
 
+        static bool isOutOfBounds(Model &model)
+        {
+            return 
+            model.getTopBound() <= -150 ||
+            model.getBottomBound() >= 850;
+        }
+
+        template <class T>
+        static void checkOutOfBounds(std::vector<T> &models)
+        {
+            for (T &model: models) {
+                if (isOutOfBounds(model)) {
+                    model.destroy();
+                }
+            }
+        }
+
+        template <class T, class K>
+        static void checkCollision(std::vector<T> &models1, std::vector<K> &models2)
+        {
+            for (T &model1: models1) {
+                for (K &model2: models2) {
+                    if (isCollision(model1, model2)) {
+                        model1.destroy();
+                        model2.destroy();
+                    }
+                }   
+            }
+        }
+
+        template <class T, class K>
+        static void checkCollision(std::vector<T> &models, K &model2)
+        {
+            for (T &model1: models) {
+                if (isCollision(model1, model2)) {
+                    model1.destroy();
+                    model2.destroy();
+                    exit (0);
+                }
+            }
+        }
 };
 
 #endif

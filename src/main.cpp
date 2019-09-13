@@ -9,11 +9,11 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Space Cowboy");
     window.setFramerateLimit(60);
-    Ship ship(400, 550, 70, 20);
-    Mechanics mechanics(ship);
+    Mechanics mechanics;
+    Ship *ship = &mechanics.getShip();
     std::vector<Asteroid> *asteroids = &mechanics.getAsteroids();
+    std::vector<Star> *stars = &mechanics.getStars();
     std::vector<Bullet> *bullets = &mechanics.getBullets();
-
     while (window.isOpen()) {
 
         sf::Event event;
@@ -24,19 +24,23 @@ int main()
         }
 
         window.clear(sf::Color::Black);
-        ship.update();
-        window.draw(ship);
-
+        ship->update();
+        window.draw(*ship);
         mechanics.update();
-
-        for (Bullet &bullet: *bullets) {
-            bullet.update();
-            window.draw(bullet);
-        }
 
         for (Asteroid &asteroid: *asteroids) {
             asteroid.update();
             window.draw(asteroid);
+        }
+        
+        for (Star &star: *stars) {
+            star.update();
+            window.draw(star);
+        }
+
+        for (Bullet &bullet: *bullets) {
+            bullet.update();
+            window.draw(bullet);
         }
         
         window.display();

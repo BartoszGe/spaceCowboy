@@ -5,14 +5,21 @@
 #include <vector>
 #include "bullet.h"
 
-#define shipWidth 80.0f
-#define shipHeight 20.0f
-#define shipVelocity 6.0f
 
+#define shipVelocity 6.0f
 class Ship : public Model
 {
     public:
-        Ship(float x, float y, float width, float height) : Model(x, y, width, height) {};
+        Ship(sf::Texture &texture) : Model (
+            ModelSettings {
+                400,
+                500,
+                1,
+                1,
+                6.f
+            },
+            texture
+        ) {};
         Ship() = default;
         ~Ship() = default;
         void update();
