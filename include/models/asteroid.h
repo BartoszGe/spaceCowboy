@@ -9,18 +9,14 @@
 class Asteroid : public Model
 {
     public:
-        Asteroid(sf::Texture &texture) : Model
-        (
-            ModelSettings
-            {
+        Asteroid(sf::Texture &texture) : Model (
+            ModelSettings { 
                 Physics::createRandom(),
                 -100.f,
                 1,
                 1,
-                1.f
-            },
-            texture
-        ) {};
+                1.f },
+            texture ) {};
 
         void update()
         {

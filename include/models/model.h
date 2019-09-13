@@ -14,9 +14,7 @@ class Model : public sf::Drawable
         Model() = default;
         ~Model() = default;
 
-        
         void update();
-
         void setVelocity(float velocity);
 
         sf::Vector2f getPosition();

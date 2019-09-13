@@ -7,7 +7,7 @@
 class Bullet : public Model
 {
     public:
-        Bullet(float x, float y, float width, float height, float velocity) : Model(x, y, width, height, velocity) {};
+        Bullet(ModelSettings bulletSettings) : Model(bulletSettings) {};
         Bullet() = delete;
         ~Bullet() = default;
 };

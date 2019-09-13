@@ -10,10 +10,8 @@
 class Ship : public Model
 {
     public:
-        Ship(sf::Texture &texture) : Model
-        (
-            ModelSettings
-            {
+        Ship(sf::Texture &texture) : Model (
+            ModelSettings {
                 400,
                 500,
                 1,
