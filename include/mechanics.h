@@ -7,6 +7,7 @@
 #include "asteroid.h"
 #include "bullet.h"
 #include "star.h"
+#include "settings.h"
 
 class Mechanics
 {
@@ -30,7 +31,7 @@ class Mechanics
         std::vector<Bullet> *bullets;
      
         sf::Time asteroidTime {sf::milliseconds(300)};
-        sf::Time starTime {sf::milliseconds(50)};
+        sf::Time starTime {sf::seconds(1/settings::shipVelocity)};
         sf::Clock asteroidClock {sf::Clock()};
         sf::Clock starClock {sf::Clock()};
 };

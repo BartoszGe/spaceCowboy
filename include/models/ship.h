@@ -4,9 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "bullet.h"
+#include "settings.h"
 
-
-#define shipVelocity 6.0f
 class Ship : public Model
 {
     public:
@@ -26,9 +25,11 @@ class Ship : public Model
         std::vector<Bullet> &getBullets();
     
     private:
-        bool spaceButton{false};
         bool spaceButtonPressed();
         std::vector<Bullet> bullets;
+        sf::Time bulletTime {sf::seconds(1/settings::bulletQuantity)};
+        sf::Clock bulletClock {sf::Clock()}; 
+        bool spaceButton{false};
 };
 
 #endif
